@@ -1,12 +1,9 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
-  ArrowRight,
-  ArrowUpRight,
   Grid2X2,
   LayoutGrid,
   Search,
   Settings2,
-  ShieldCheck,
   X,
   Layers3,
 } from "lucide-react";
@@ -19,7 +16,6 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Todas");
   const [admin, setAdmin] = useState(false);
-  const mainRef = useRef<HTMLDivElement>(null);
   const visible = selectApplications(apps, query, category);
   function navigate(value: boolean) {
     setAdmin(value);
@@ -33,31 +29,21 @@ export default function App() {
       <a className="skip-link" href="#main">
         Pular para o conteúdo
       </a>
-      <div className="government-bar">
-        <div className="container">
-          <span>GOVERNO DO ESTADO DE MINAS GERAIS</span>
-          <span className="government-caption">Educação que transforma</span>
-        </div>
-      </div>
       <header>
         <div className="container header-inner">
           <button
-            className="brand"
+            className="hub-brand"
             onClick={() => navigate(false)}
-            aria-label="SEE-MG — início"
+            aria-label="Hub de Aplicações — início"
           >
-            <span className="brand-mark" aria-hidden="true">
-              <span />
+            <span className="hub-mark" aria-hidden="true">
+              <Grid2X2 size={23} />
             </span>
             <span>
-              <strong>
-                SEE<span className="brand-mg"> / MG</span>
-              </strong>
-              <small>Secretaria de Estado de Educação</small>
+              <strong>Hub de Aplicações</strong>
+              <small>Subsecretaria de Administração | SEE-MG</small>
             </span>
           </button>
-          <span className="header-divider" />
-          <span className="header-title">Hub de Aplicações</span>
           <button
             className={`admin-link ${admin ? "selected" : ""}`}
             onClick={() => navigate(!admin)}
@@ -76,60 +62,20 @@ export default function App() {
         />
       ) : (
         <main id="main">
-          <section className="hero">
-            <div className="container hero-inner">
-              <div className="hero-copy">
-                <span className="eyebrow">
-                  <span className="tiny-line" /> TECNOLOGIA A SERVIÇO DA
-                  EDUCAÇÃO
-                </span>
-                <h1 tabIndex={-1}>
-                  Conectando ferramentas.
-                  <br />
-                  <span>Simplificando o dia a dia.</span>
-                </h1>
-                <p>
-                  Um ponto de encontro para as aplicações da nossa equipe.
-                  <br className="desktop-break" /> Encontre a ferramenta certa e
-                  dê o próximo passo.
-                </p>
-                <a className="hero-link" href="#catalogo">
-                  Explore as aplicações
-                  <ArrowRight size={17} />
-                </a>
-              </div>
-              <div className="hero-art" aria-hidden="true">
-                <div className="orbit orbit-one" />
-                <div className="orbit orbit-two" />
-                <div className="art-tile tile-school">
-                  <ShieldCheck size={31} />
-                </div>
-                <div className="art-tile tile-grid">
-                  <Grid2X2 size={39} />
-                </div>
-                <div className="art-tile tile-layers">
-                  <Layers3 size={29} />
-                </div>
-                <div className="art-caption">
-                  <span />
-                  Ferramentas que aproximam
-                </div>
-                <span className="art-dot dot-one" />
-                <span className="art-dot dot-two" />
-              </div>
-            </div>
-          </section>
           <section
             className="container catalog"
             id="catalogo"
-            ref={mainRef}
             aria-labelledby="catalog-title"
           >
             <div className="section-heading">
               <div>
-                <span className="eyebrow">SEU ESPAÇO DE TRABALHO</span>
-                <h2 id="catalog-title">Explore nossas aplicações</h2>
-                <p>Soluções para tornar a gestão mais simples e eficiente.</p>
+                <h1 id="catalog-title" tabIndex={-1}>
+                  Aplicações e ferramentas
+                </h1>
+                <p>
+                  Acesse as soluções desenvolvidas para apoiar as atividades da
+                  Subsecretaria de Administração.
+                </p>
               </div>
               <span className="catalog-count">
                 <LayoutGrid size={16} />
@@ -233,15 +179,16 @@ export default function App() {
             <strong>
               Hub de Aplicações <span>SEE-MG</span>
             </strong>
-            <p>Secretaria de Estado de Educação de Minas Gerais</p>
+            <p>Subsecretaria de Administração | SEE-MG</p>
           </div>
           <span className="footer-purpose">
-            Tecnologia para uma educação que transforma.
-            <ArrowUpRight size={15} aria-hidden="true" />
+            Soluções para apoiar a administração.
           </span>
         </div>
         <div className="container footer-bottom">
-          <span>Governo de Minas Gerais · {new Date().getFullYear()}</span>
+          <span>
+            Subsecretaria de Administração · {new Date().getFullYear()}
+          </span>
           <span>Interface em homologação · Dados demonstrativos</span>
         </div>
       </footer>
